@@ -2,7 +2,7 @@
 
 CURRENT := $(shell pwd)
 VENV := $(CURRENT)/venv
-PYTHON_BIN := $(VENV)/bin/python3
+PYTHON_FLASK := $(VENV)/bin/flask
 PYTHON_PIP := $(VENV)/bin/pip3
 PYTHON_TEST := $(VENV)/bin/unittest
 
@@ -20,11 +20,15 @@ bootstrap: # --- prepares the local enviroment for running and developing
 tests: # --- runs tests
 	$(PYTHON_TEST) $(CURRENT)/tests/*
 
+run:
+	export FLASK_DEBUG=1
+	export FLASK_ENV=development
+	export FLASK_APP=api.py
+	$(PYTHON_FLASK) run --port 3692
+
 docker-build: # --- builds docker image to run
 	docker build . --tag currenciator_api
 
 docker-run: # --- runs api
-	docker run --rm currenciator_api
+	docker run --name currenciator_api -it --rm --network host currenciator_api
 
-docker-run-dev: # --- runs api and mounts folder to develop in docker
-	docker run -it --rm -v $(CURRENT)/currenciator/:/currenciator/ currenciator_api
