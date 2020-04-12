@@ -29,8 +29,10 @@ class Currency(object):
             c_to = self._identify_currency(convert_to)
             response[convert_to] = self.crowns_to_currency(amount_czk, c_to)
         else:
+            rates = self._rates.copy()
+            rates["CZK"] = 1  # because CZK is not is list, we are in czech republic
             # if we convert to all currencies
-            for currency in CURRENCIES_SYMBOLS.keys():
+            for currency in rates.keys():
                 if currency == c_from:
                     # don't return source currency
                     continue

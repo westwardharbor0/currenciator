@@ -37,13 +37,13 @@ class CachedSource(object):
         return data
 
     @staticmethod
-    def _cnb_update_time():
+    def _cnb_update_time(update_time=None):
         """
         Compares current time with time when CNB updates rates
         :return: boolean if update time already was
         """
         time_now = datetime.now().time()
-        time_cnb = datetime.strptime(CNB_TIME_UPDATE, '%H:%M').time()
+        time_cnb = datetime.strptime(update_time or CNB_TIME_UPDATE, '%H:%M').time()
         return time_now > time_cnb
 
     @classmethod
