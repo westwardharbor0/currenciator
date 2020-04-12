@@ -53,15 +53,28 @@ This command will install all dependencies in virtual enviroment.
 ## Basic usage
 ### CLI mode
 This mode is contained in `currenciator_cli.py` file.<br>
-To run it use `venv/bin/python3 currenciator_cli.py`.<br><br>
 <strong>Parameters:</strong> <br>
 ```bash
---amount int # required, amount of money to be converted
---input_currency str # required, input currency code / symbol
---output_currency str # optional, output currency code / symbol
+amount int # required, amount of money to be converted
+input_currency str # required, input currency code / symbol
+output_currency str # optional, output currency code / symbol
 ```
-If no output currency is supplied, the cli will convert to all supported currencies <br><br>
-<strong>Example call:</strong> <br>
+To run it using `make` (the easier way) you need to use `make cli`
+<strong>Example cli call:</strong> <br>
+```JSON
+make cli py amount=20 input_currency=USD output_currency=CZK
+{
+  "input": {
+      "amount": 20,
+      "currency": "USD"
+  }, 
+  "output": {
+      "CZK": 495.16
+  }
+}
+```
+To run it the <strong>"raw"</strong> way, use `venv/bin/python3 currenciator_cli.py`. <br>
+<strong>Example raw call:</strong> <br>
 ```JSON
 venv/bin/python3 currenciator_cli.py --amount 20 --input_currency USD --output_currency CZK
 {
@@ -74,6 +87,7 @@ venv/bin/python3 currenciator_cli.py --amount 20 --input_currency USD --output_c
   }
 }
 ```
+If no output currency is supplied, the cli will convert to all supported currencies <br><br>
 ### API mode
 Currency api can be run in two modes:
 #### venv
