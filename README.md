@@ -51,14 +51,15 @@ To install all dependencies you run `make boostrap` in project root dir.
 This command will install all dependencies in virtual enviroment. 
 
 ## Basic usage
+###Parameters
+Only these few parameters are needed to run in all modes
+```bash
+amount=int # required, amount of money to be converted
+input_currency=str # required, input currency code / symbol
+output_currency=str # optional, output currency code / symbol
+```
 ### CLI mode
 This mode is contained in `currenciator_cli.py` file.<br>
-<strong>Parameters:</strong> <br>
-```bash
-amount int # required, amount of money to be converted
-input_currency str # required, input currency code / symbol
-output_currency str # optional, output currency code / symbol
-```
 To run it using `make` (the easier way) you need to use `make cli`
 <strong>Example cli call:</strong> <br>
 ```JSON
@@ -100,12 +101,6 @@ After successful build you can run `make docker-run` to start the api in docker.
 <br><br>
 After starting the api in one of those modes you can finally use it. 
 The api runs on port `3692` and has only one endpoint for converting currencies.
-<br><strong>Parameters:</strong> <br>
-```bash
-amount=int # required, amount of money to be converted
-input_currency=str # required, input currency code / symbol
-output_currency=str # optional, output currency code / symbol
-```
 Since this endpoint is set to GET you can paste this example URL to browser and try it yourself.<br>
 <br>
 <strong>Example call:</strong>

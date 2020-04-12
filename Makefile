@@ -12,8 +12,9 @@ PYTHON_PIP := $(VENV_BIN)/pip3
 #-------------- CLI variables ----------------#
 amount :=
 input_currency :=
-output_currency := 
+output_currency :=
 
+FLASK_PORT := 3693 # default api port
 
 all: help
 	$(error "make without target")
@@ -37,15 +38,12 @@ else
 endif
 
 run: # --- runs api in venv
-	export FLASK_DEBUG=1
-	export FLASK_ENV=development
-	export FLASK_APP=api.py
-	$(PYTHON_FLASK) run --port 3692
+	FLASK_DEBUG=1 FLASK_ENV=development FLASK_APP=api.py $(PYTHON_FLASK) run --port $(FLASK_PORT)
 
 docker-build: # --- builds docker image to run
 	docker build . --tag currenciator_api
 
 docker-run: # --- runs api in docker
-	docker run --name currenciator_api -it --rm --network host currenciator_api
+	docker run --name currenciator_api -it --rm --network host  -e API_PORT=$(FLASK_PORT) currenciator_api
 
 .PHONY: tests

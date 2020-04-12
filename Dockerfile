@@ -1,6 +1,7 @@
 FROM alpine
 
 ENV FLASK_APP=api.py
+ENV API_PORT=3692
 
 RUN apk upgrade --no-cache \
   && apk add --no-cache \
@@ -15,4 +16,4 @@ WORKDIR /currenciator
 
 RUN pip3 install -r requirements.txt
 
-CMD ["flask", "run", "--port", "3692"]
+CMD flask run --port $API_PORT

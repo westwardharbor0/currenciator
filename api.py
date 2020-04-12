@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify
 from json import dumps
 
-from .src.cached_source import CachedSource
-from .src.currency import Currency
+from src.cached_source import CachedSource
+from src.currency import Currency
 
 # init flask api app
 app = Flask(__name__)

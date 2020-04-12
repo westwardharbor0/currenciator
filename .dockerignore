@@ -1,0 +1,8 @@
+tests
+venv
+README.md
+.gitignore
+currenciator_cli.py
+Dockerfile
+Makefile
+.dockerignore
