@@ -1,8 +1,9 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request
 from json import dumps
 
 from src.cached_source import CachedSource
 from src.currency import Currency
+from src.exceptions import UnknownCurrency
 
 # init flask api app
 app = Flask(__name__)
@@ -23,7 +24,10 @@ def convert():
     output_currency = request.args.get("output_currency")
 
     # convert the amount to given or all currencies
-    response = currency.convert(amount, input_currency, output_currency, json_resp=True)
+    try:
+        response = currency.convert(amount, input_currency, output_currency, json_resp=True)
+    except UnknownCurrency as ex:
+        return ex.message, 404
     # some nice json response
     return app.response_class(
         response=dumps(response),

@@ -97,7 +97,7 @@ class CachedSource(object):
         Parses the response from CNB endpoint
         :param response: text response from CNB endpoint
         :return: dict of last update date and rates
-        """
+        """ 
         lines = response.strip().split("\n")
         last_update = lines.pop(0)
         lines.pop(0)  # we don't need the description line

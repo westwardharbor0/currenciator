@@ -74,7 +74,7 @@ class Currency(object):
         if currency in v:
             # if symbol found in translate table return associated code
             return k[v.index(currency)]
-        raise UnknownCurrency("{} is unknown".format(currency))
+        raise UnknownCurrency(currency)
 
     def crowns_to_currency(self, amount, currency):
         """

@@ -47,12 +47,12 @@ they get updated. After they get updated they are stored in cache file to preven
 - Python `flask`
 - Python `requests`
 
-To install all dependencies you run `make boostrap` in project root dir.
+To install all dependencies you run `make bootstrap` in project root folder.
 This command will install all dependencies in virtual enviroment. 
 
 ## Basic usage
-###Parameters
-Only these few parameters are needed to run in all modes
+### Parameters
+Only these few parameters are needed to run `curreciator` in all modes
 ```bash
 amount=int # required, amount of money to be converted
 input_currency=str # required, input currency code / symbol
@@ -60,7 +60,7 @@ output_currency=str # optional, output currency code / symbol
 ```
 ### CLI mode
 This mode is contained in `currenciator_cli.py` file.<br>
-To run it using `make` (the easier way) you need to use `make cli`
+To run it using `make` (the easier way) you need to use `make cli` <br>
 <strong>Example cli call:</strong> <br>
 ```JSON
 make cli py amount=20 input_currency=USD output_currency=CZK
@@ -71,6 +71,19 @@ make cli py amount=20 input_currency=USD output_currency=CZK
   }, 
   "output": {
       "CZK": 495.16
+  }
+}
+------------------------------------------------------------
+make cli py amount=20 input_currency=USD
+{
+  "input": {
+      "amount": 20,
+      "currency": "USD"
+  }, 
+  "output": {
+      "CZK": 495.16,
+      "AUD": 30.15,
+      ...
   }
 }
 ```
@@ -101,12 +114,12 @@ After successful build you can run `make docker-run` to start the api in docker.
 <br><br>
 After starting the api in one of those modes you can finally use it. 
 The api runs on port `3692` and has only one endpoint for converting currencies.
-Since this endpoint is set to GET you can paste this example URL to browser and try it yourself.<br>
+Since this endpoint is set to `GET` you can paste this example URL to browser and try it yourself.<br>
 <br>
 <strong>Example call:</strong>
 
 ```JSON
-http://127.0.0.1:3692/currency_convertor?amount=20&input_currency=USD&output_currency=CZK
+GET: http://127.0.0.1:3692/currency_convertor?amount=20&input_currency=USD&output_currency=CZK
 {
   "input": {
       "amount": 20,
@@ -117,10 +130,9 @@ http://127.0.0.1:3692/currency_convertor?amount=20&input_currency=USD&output_cur
   }
 }
 ```
+## Testing
+There are few unittests to ensure a working core functionality. <br>
+To run these unittests run `make tests` and it will start testing.
 
-# Possible TODO's
- - [ ] gitlab ci integration
- - [ ] kubernetes deployment
- - [ ] different rates sources
- - [ ] load balancing
-    .....
+## Missing information in readme
+If you need any more information or have an idea what to add, don't be afraid to send us an email. 
