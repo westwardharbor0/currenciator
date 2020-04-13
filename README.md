@@ -63,7 +63,7 @@ This mode is contained in `currenciator_cli.py` file.<br>
 To run it using `make` (the easier way) you need to use `make cli` <br>
 <strong>Example cli call:</strong> <br>
 ```JSON
-make cli py amount=20 input_currency=USD output_currency=CZK
+make cli amount=20 input_currency=USD output_currency=CZK
 {
   "input": {
       "amount": 20,
@@ -74,7 +74,7 @@ make cli py amount=20 input_currency=USD output_currency=CZK
   }
 }
 ------------------------------------------------------------
-make cli py amount=20 input_currency=USD
+make cli amount=20 input_currency=USD
 {
   "input": {
       "amount": 20,

@@ -19,9 +19,13 @@ def convert():
     currency = Currency(rates=rates["rates"])
 
     # load some arguments from request
-    amount = float(request.args.get("amount"))
+    amount = request.args.get("amount")
     input_currency = request.args.get("input_currency")
     output_currency = request.args.get("output_currency")
+    if not all((amount, input_currency)):
+        param = "amount" if not amount else "input_currency"
+        return "Missing required parameter '{}'".format(param), 400
+    amount = float(amount)
 
     # convert the amount to given or all currencies
     try:
